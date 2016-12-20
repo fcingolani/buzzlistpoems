@@ -62,8 +62,12 @@ File.open(png_filepath, 'r') { |file|
 
   tweet_text += " #{article[:guid]}"
 
-  tweet = TWITTER.update_with_media(tweet_text, file)
-  article[:tweet_id] = tweet.id
+  begin
+    tweet = TWITTER.update_with_media(tweet_text, file)
+    article[:tweet_id] = tweet.id
+  rescue Exception => e  
+    LOGGER.error e.message
+  end
   
 }
 

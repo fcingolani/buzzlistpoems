@@ -81,7 +81,7 @@ rss_urls.each { | rss_url |
         article = articles.insert(
           :guid => article_guid,
           :title => article_title.encode('utf-8'),
-          :body => ,
+          :body => article_body,
           :author => article_author,
           :created_at => DateTime.now
         )

@@ -73,16 +73,22 @@ rss_urls.each { | rss_url |
       }.select { |article_line|
         article_line != nil
       }
+      
+      article_body = article_lines.join("\n").encode('utf-8')
 
-      article = articles.insert(
-        :guid => article_guid,
-        :title => article_title.encode('utf-8'),
-        :body => article_lines.join("\n").encode('utf-8'),
-        :author => article_author,
-        :created_at => DateTime.now
-      )
+      if article_body != ''
+      
+        article = articles.insert(
+          :guid => article_guid,
+          :title => article_title.encode('utf-8'),
+          :body => ,
+          :author => article_author,
+          :created_at => DateTime.now
+        )
 
-      LOGGER.info "Added #{article_guid}."
+        LOGGER.info "Added #{article_guid}."
+        
+      end
 
     end
 

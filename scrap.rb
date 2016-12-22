@@ -17,7 +17,9 @@ rss_urls = [
   'https://www.buzzfeed.com/community/justlaunched.xml',
   'https://www.buzzfeed.com/lol.xml',
   'https://www.buzzfeed.com/trashy.xml',
-  'https://www.buzzfeed.com/wtf.xml'
+  'https://www.buzzfeed.com/wtf.xml',
+  'https://www.buzzfeed.com/fail.xml',
+  'https://www.buzzfeed.com/win.xml'
 ]
 
 rss_urls.each { | rss_url |

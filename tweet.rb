@@ -57,7 +57,7 @@ File.open(png_filepath, 'r') { |file|
   # tweet_text = "#{article[:title]}"
 
   if article[:author]
-    tweet_text += " by #{article[:author]}666"
+    tweet_text += " by #{article[:author]}"
   end
 
   tweet_text += " #{article[:guid]}"

@@ -55,8 +55,8 @@ rss_urls.each { | rss_url |
         article_author = nil
       end
 
-      article_lines = article_doc.css('.js-subbuzz__title-text').map { | article_item |
-        line_text = article_item.text
+      article_lines = article_doc.css('.subbuzz__number').map { | article_item |
+        line_text = article_item.next_element.text
 
         line_text
           .gsub(/^(a|an)\s/i, '')

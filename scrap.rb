@@ -9,8 +9,6 @@ LOGGER.info "Starting scrap.rb"
 articles = DB[:articles]
 
 title_start_regexp = /^\d+\s+/
-line_start_regexp = /^\d+\.\s+/
-
 
 rss_urls = [
   'https://www.buzzfeed.com/index.xml',
@@ -49,7 +47,6 @@ rss_urls.each { | rss_url |
       article_text = open(article_guid, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE})
       article_doc = Nokogiri::HTML(article_text)
 
-
       article_author_meta = article_doc.css('meta[name="twitter:creator"]')
 
       if article_author_meta.any?
@@ -58,26 +55,22 @@ rss_urls.each { | rss_url |
         article_author = nil
       end
 
-      article_lines = article_doc.css('.subbuzz_name').map { | article_item |
-         line_text = article_item.text
+      article_lines = article_doc.css('.js-subbuzz__title-text').map { | article_item |
+        line_text = article_item.text
 
-         if line_start_regexp.match(line_text)
-           line_text
-            .gsub(line_start_regexp, '')
-            .gsub(/^(a|an)\s/i, '')
-            .gsub(/[\:\.\,]$/, '')
-            .capitalize
-         else
-           nil
-         end
+        line_text
+          .gsub(/^(a|an)\s/i, '')
+          .gsub(/[\:\.\,]$/, '')
+          .capitalize
+
       }.select { |article_line|
         article_line != nil
       }
-      
+
       article_body = article_lines.join("\n").encode('utf-8')
 
       if article_body != ''
-      
+
         article = articles.insert(
           :guid => article_guid,
           :title => article_title.encode('utf-8'),
@@ -87,7 +80,7 @@ rss_urls.each { | rss_url |
         )
 
         LOGGER.info "Added #{article_guid}."
-        
+
       end
 
     end

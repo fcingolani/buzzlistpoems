@@ -7,7 +7,7 @@ COPY docker-cmd.sh /usr/bin/
 
 RUN apt-get update \
     && apt-get install -y wget cron \
-    && wget http://download.gna.org/wkhtmltopdf/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
+    && wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
     && tar -xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
     && rm wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
     && mv wkhtmltox /opt/ \
